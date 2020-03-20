@@ -12,7 +12,9 @@ DB.loggers << Logger.new($stdout) unless DB.loggers.size > 0                    
 def view(template); erb template.to_sym; end                                          #
 use Rack::Session::Cookie, key: 'rack.session', path: '/', secret: 'secret'           #
 before { puts; puts "--------------- NEW REQUEST ---------------"; puts }             #
-after { puts; }                                                                       #
+after { puts; }     
+account_sid = ENV["ACb012c59ad20c477e963501e9e142e254"]
+auth_token = ENV["7525888f4ecdc76daea59a50a8fc4bcf"]                                                                  #
 #######################################################################################
 
 events_table = DB.from(:events)
@@ -46,6 +48,16 @@ post "/users/create" do
             password: BCrypt::Password.create(params["password"])
         )
         
+                account_sid = "ACb012c59ad20c477e963501e9e142e254"
+        auth_token = "7525888f4ecdc76daea59a50a8fc4bcf"
+        client = Twilio::REST::Client.new("ACb012c59ad20c477e963501e9e142e254", "7525888f4ecdc76daea59a50a8fc4bcf")
+        # send the SMS from your trial Twilio number to your verified non-Twilio number
+        client.messages.create(
+        from: "+12068296075", 
+        to: "+14259850325",
+        body: "One new user has created an account on He@tm@p!"
+        )
+
         redirect "/logins/new"
     end
 end
