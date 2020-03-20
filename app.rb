@@ -14,7 +14,7 @@ use Rack::Session::Cookie, key: 'rack.session', path: '/', secret: 'secret'     
 before { puts; puts "--------------- NEW REQUEST ---------------"; puts }             #
 after { puts; }     
 account_sid = ENV["ACb012c59ad20c477e963501e9e142e254"]
-auth_token = ENV["7525888f4ecdc76daea59a50a8fc4bcf"]                                                                  #
+auth_token = ENV["9fed77da875df6cb28f6110430867f54"]                                                                  #
 #######################################################################################
 
 events_table = DB.from(:events)
@@ -49,8 +49,8 @@ post "/users/create" do
         )
         
                 account_sid = "ACb012c59ad20c477e963501e9e142e254"
-        auth_token = "7525888f4ecdc76daea59a50a8fc4bcf"
-        client = Twilio::REST::Client.new("ACb012c59ad20c477e963501e9e142e254", "7525888f4ecdc76daea59a50a8fc4bcf")
+        auth_token = "9fed77da875df6cb28f6110430867f54"
+        client = Twilio::REST::Client.new("ACb012c59ad20c477e963501e9e142e254", "9fed77da875df6cb28f6110430867f54")
         # send the SMS from your trial Twilio number to your verified non-Twilio number
         client.messages.create(
         from: "+12068296075", 
